@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Param, Body, ParseIntPipe } from '@nestjs/common';
+
 import { ShowsService } from './shows.service';
 import { Show } from './entities/show.entity';
-
 import { CreateShowDto } from './dto/create-show.dto';
 
 @Controller('shows')

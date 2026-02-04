@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+
+import { Screen } from '../../screens/entity/screen.entity';
 
 @Entity()
 export class Show {
@@ -13,4 +15,7 @@ export class Show {
 
   @Column()
   end_time: Date;
+
+  @ManyToOne(() => Screen, cinema => cinema.shows)
+  cinema: Screen;
 }
