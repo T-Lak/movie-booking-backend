@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
-import { Screen } from '../../screens/entity/screen.entity';
+import { Screen } from '../../screens/entities/screen.entity';
 
 @Entity()
 export class Seat {

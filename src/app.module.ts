@@ -6,7 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Reservation } from './reservations/entity/reservation.entity';
 import { Seat } from './seats/entities/seat.entity';
-import { Screen } from './screens/entity/screen.entity';
+import { Screen } from './screens/entities/screen.entity';
 import { Show } from './shows/entities/show.entity';
 import { Movie } from './movies/entities/movie.entity';
 

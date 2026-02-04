@@ -18,11 +18,11 @@ export class SeatsService {
   }
 
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<Seat> {
-    const show: Seat | null = await this.seatsRepository.findOneBy({ id });
-    if (!show) {
-      throw new NotFoundException(`Show ${id} not found`);
+    const seat: Seat | null = await this.seatsRepository.findOneBy({ id });
+    if (!seat) {
+      throw new NotFoundException(`Seat ${id} not found`);
     }
-    return show;
+    return seat;
   }
 
   create(createSeatDto: CreateSeatDto): Promise<Seat> {
@@ -31,18 +31,18 @@ export class SeatsService {
   }
 
   async update(id: number, dto: UpdateSeatDto): Promise<Seat> {
-    const show: Seat | null = await this.seatsRepository.findOne({ where: { id } });
-    if (!show) {
-      throw new NotFoundException(`Show with id ${id} not found`);
+    const seat: Seat | null = await this.seatsRepository.findOne({ where: { id } });
+    if (!seat) {
+      throw new NotFoundException(`Seat with id ${id} not found`);
     }
-    Object.assign(show, dto);
-    return this.seatsRepository.save(show);
+    Object.assign(seat, dto);
+    return this.seatsRepository.save(seat);
   }
 
   async delete(id: number): Promise<void> {
     const result: DeleteResult = await this.seatsRepository.delete(id);
     if (result.affected === 0) {
-      throw new NotFoundException(`Show with id ${id} not found`);
+      throw new NotFoundException(`Seat with id ${id} not found`);
     }
   }
 }
