@@ -20,7 +20,7 @@ export class MoviesController {
   }
 
   @Post()
-  create(@Body() createMovieDto: CreateMovieDto): Promise<Movie> {
+  createMovie(@Body() createMovieDto: CreateMovieDto): Promise<Movie> {
     return this.moviesService.create(createMovieDto);
   }
 
