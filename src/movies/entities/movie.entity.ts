@@ -19,6 +19,6 @@ export class Movie {
   @Column()
   description: string;
 
-  @OneToMany(() => Show, show => show.movie)
+  @OneToMany(() => Show, show => show.movie, { cascade: true })
   shows: Show[];
 }
