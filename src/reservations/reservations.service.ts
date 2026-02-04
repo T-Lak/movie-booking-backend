@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, Param, ParseIntPipe } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 
 import { Seat } from '../seats/entities/seat.entity';
 import { Reservation } from './entity/reservation.entity';
@@ -19,31 +19,31 @@ export class ReservationsService {
   }
 
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<Reservation> {
-    const reservation = await this.reservationsRepository.findOneBy({ id });
+    const reservation: Reservation | null = await this.reservationsRepository.findOneBy({ id });
     if (!reservation) {
-      throw new NotFoundException(`Movie ${id} not found`);
+      throw new NotFoundException(`Reservation ${id} not found`);
     }
     return reservation;
   }
 
   create(createReservationDto: CreateReservationDto): Promise<Reservation> {
-    const movie = this.reservationsRepository.create(createReservationDto);
-    return this.reservationsRepository.save(movie);
+    const reservation: Reservation = this.reservationsRepository.create(createReservationDto);
+    return this.reservationsRepository.save(reservation);
   }
 
   async update(id: number, dto: UpdateReservationDto): Promise<Reservation> {
-    const reservation = await this.reservationsRepository.findOne({ where: { id } });
+    const reservation: Reservation | null = await this.reservationsRepository.findOne({ where: { id } });
     if (!reservation) {
-      throw new NotFoundException(`Movie with id ${id} not found`);
+      throw new NotFoundException(`Reservation with id ${id} not found`);
     }
     Object.assign(reservation, dto);
     return this.reservationsRepository.save(reservation);
   }
 
   async delete(id: number): Promise<void> {
-    const result = await this.reservationsRepository.delete(id);
+    const result: DeleteResult = await this.reservationsRepository.delete(id);
     if (result.affected === 0) {
-      throw new NotFoundException(`Movie with id ${id} not found`);
+      throw new NotFoundException(`Reservation with id ${id} not found`);
     }
   }
 }

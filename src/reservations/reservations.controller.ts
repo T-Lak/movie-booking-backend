@@ -15,17 +15,21 @@ export class ReservationsController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<Reservation> {
+  findOne(
+    @Param('id', ParseIntPipe) id: number
+  ): Promise<Reservation> {
     return this.reservationsService.findOne(id);
   }
 
   @Post()
-  createMovie(@Body() createMovieDto: CreateReservationDto): Promise<Reservation> {
-    return this.reservationsService.create(createMovieDto);
+  createReservation(
+    @Body() createReservationDto: CreateReservationDto
+  ): Promise<Reservation> {
+    return this.reservationsService.create(createReservationDto);
   }
 
   @Patch(':id')
-  async updateMovie(
+  async updateReservation(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateReservationDto,
   ): Promise<Reservation> {
@@ -33,7 +37,9 @@ export class ReservationsController {
   }
 
   @Delete(':id')
-  deleteMovie(@Param('id', ParseIntPipe) id: number): Promise<void> {
+  deleteReservation(
+    @Param('id', ParseIntPipe) id: number
+  ): Promise<void> {
     return this.reservationsService.delete(id);
   }
 }
