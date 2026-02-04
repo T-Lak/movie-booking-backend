@@ -6,8 +6,8 @@ export class CreateShowDto {
   movie_title: string;
 
   @IsDateString()
-  start_time: string; // ISO date string
+  start_time: string;
 
   @IsDateString()
-  end_time: string; // ISO date string
+  end_time: string;
 }
