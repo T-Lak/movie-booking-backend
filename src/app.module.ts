@@ -8,6 +8,7 @@ import { Reservation } from './reservations/entity/reservation.entity';
 import { Seat } from './seats/entities/seat.entity';
 import { Screen } from './screens/entity/screen.entity';
 import { Show } from './shows/entities/show.entity';
+import { Movie } from './movies/entities/movie.entity';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { Show } from './shows/entities/show.entity';
       database: 'movie_app',
       autoLoadEntities: true,
       synchronize: true,
-      entities: [Show, Screen, Seat, Reservation],
+      entities: [Show, Screen, Seat, Reservation, Movie],
     }),
   ShowsModule,
   ],

@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 import { Screen } from '../../screens/entity/screen.entity';
+import { Movie } from '../../movies/entities/movie.entity';
 
 @Entity()
 export class Show {
@@ -8,14 +9,14 @@ export class Show {
   id: number;
 
   @Column()
-  movie_title: string;
-
-  @Column()
   start_time: Date;
 
   @Column()
   end_time: Date;
 
-  @ManyToOne(() => Screen, cinema => cinema.shows)
-  cinema: Screen;
+  @ManyToOne(() => Screen, screen => screen.shows)
+  screen: Screen;
+
+  @ManyToOne(() => Movie, movie => movie.shows)
+  movie: Movie;
 }

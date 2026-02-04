@@ -1,18 +1,24 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Seat } from '../../seats/entities/seat.entity';
+
 import { Show } from '../../shows/entities/show.entity';
 
 @Entity()
-export class Screen {
+export class Movie {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  name: string;
+  title: string;
 
-  @OneToMany(() => Seat, seat => seat.screen)
-  seats: Seat[];
+  @Column()
+  year: number;
 
-  @OneToMany(() => Show, show => show.screen)
+  @Column()
+  duration: number;
+
+  @Column()
+  description: string;
+
+  @OneToMany(() => Show, show => show.movie)
   shows: Show[];
 }
