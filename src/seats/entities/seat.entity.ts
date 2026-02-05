@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 
 import { Screen } from '../../screens/entities/screen.entity';
+import { SeatType } from '../enums/seat-type.enum';
 
 @Entity()
 export class Seat {
@@ -13,11 +14,15 @@ export class Seat {
   @Column()
   number: number;
 
-  @Column()
-  type: string;
+  @Column({
+    type: 'enum',
+    enum: SeatType,
+    default: SeatType.STANDARD,
+  })
+  type: SeatType;
 
-  @ManyToOne(() =>
-    Screen, screen => screen.seats, { onDelete: 'CASCADE' }
+  @ManyToOne(() => Screen,
+      screen => screen.seats, { onDelete: 'CASCADE' }
   )
   screen: Screen;
 }

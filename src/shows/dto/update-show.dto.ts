@@ -1,15 +1,18 @@
-import { IsDateString, IsOptional, IsString } from 'class-validator';
+import { IsDate, IsOptional, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class UpdateShowDto {
   @IsString()
   @IsOptional()
   movie_title: string;
 
-  @IsDateString()
+  @Type(() => Date)
+  @IsDate()
   @IsOptional()
-  start_time: string;
+  start_time: Date;
 
-  @IsDateString()
+  @Type(() => Date)
+  @IsDate()
   @IsOptional()
-  end_time: string;
+  end_time: Date;
 }

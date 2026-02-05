@@ -1,5 +1,7 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
+import { SeatType } from '../enums/seat-type.enum';
+
 export class CreateSeatDto {
   @IsNumber()
   @IsNotEmpty()
@@ -11,5 +13,5 @@ export class CreateSeatDto {
 
   @IsString()
   @IsNotEmpty()
-  type: string;
+  type: SeatType;
 }

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, Param, ParseIntPipe } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, Param, ParseIntPipe } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -25,8 +25,22 @@ export class ShowsService {
     return show;
   }
 
-  create(createShowDto: CreateShowDto): Promise<Show> {
-    const show = this.showRepository.create(createShowDto);
+  create(dto: CreateShowDto): Promise<Show> {
+    const start = new Date(dto.start_time);
+    const end = new Date(dto.end_time);
+    const now = new Date();
+
+    if (start <= now) {
+      throw new BadRequestException('Start time must be in the future');
+    }
+    if (end <= now) {
+      throw new BadRequestException('End time must be in the future');
+    }
+    if (start >= end) {
+      throw new BadRequestException('Start time must be before end time');
+    }
+
+    const show = this.showRepository.create(dto);
     return this.showRepository.save(show);
   }
 

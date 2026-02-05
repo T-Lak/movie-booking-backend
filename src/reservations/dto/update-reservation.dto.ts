@@ -1,11 +1,14 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsOptional, IsString } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { ReservationStatus } from '../enums/reservation-status.enum';
 
 export class UpdateReservationDto {
-  @IsString()
+  @IsEmail()
+  @Transform(({ value }) => value.trim().toLowerCase())
   @IsOptional()
   customerEmail: string;
 
   @IsString()
   @IsOptional()
-  status: string;
+  status: ReservationStatus;
 }

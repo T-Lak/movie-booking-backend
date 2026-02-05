@@ -1,13 +1,16 @@
-import { IsString, IsNotEmpty, IsDateString } from 'class-validator';
+import { IsString, IsNotEmpty, IsDate } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class CreateShowDto {
   @IsString()
   @IsNotEmpty()
   movie_title: string;
 
-  @IsDateString()
-  start_time: string;
+  @Type(() => Date)
+  @IsDate()
+  start_time: Date;
 
-  @IsDateString()
-  end_time: string;
+  @Type(() => Date)
+  @IsDate()
+  end_time: Date;
 }

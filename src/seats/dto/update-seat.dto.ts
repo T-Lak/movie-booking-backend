@@ -1,5 +1,7 @@
 import { IsNumber, IsOptional, IsString } from 'class-validator';
 
+import { SeatType } from '../enums/seat-type.enum';
+
 export class UpdateSeatDto {
   @IsNumber()
   @IsOptional()
@@ -11,5 +13,5 @@ export class UpdateSeatDto {
 
   @IsString()
   @IsOptional()
-  type: string;
+  type: SeatType;
 }
