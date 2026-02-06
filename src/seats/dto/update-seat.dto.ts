@@ -1,13 +1,13 @@
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsInt, IsOptional, IsString } from 'class-validator';
 
 import { SeatType } from '../enums/seat-type.enum';
 
 export class UpdateSeatDto {
-  @IsNumber()
+  @IsInt()
   @IsOptional()
   row: number;
 
-  @IsNumber()
+  @IsInt()
   @IsOptional()
   number: number;
 

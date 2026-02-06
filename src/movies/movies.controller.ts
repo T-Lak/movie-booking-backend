@@ -1,17 +1,20 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import {
+  Body, Controller, Delete, Get, Param, Patch, Post, Query, ParseIntPipe
+} from '@nestjs/common';
 
 import { MoviesService } from './movies.service';
-import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie } from './entities/movie.entity';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 import { CreateMovieDto } from './dto/create-movie.dto';
+import { MovieStatus } from './enums/movie-status.enum';
 
 @Controller('movie')
 export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
 
   @Get()
-  findAll(): Promise<Movie[]> {
-    return this.moviesService.findAll();
+  findAll(@Query('status') status?: MovieStatus): Promise<Movie[]> {
+    return this.moviesService.findAll(status);
   }
 
   @Get(':id')

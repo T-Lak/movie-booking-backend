@@ -1,19 +1,16 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { MovieStatus } from '../enums/movie-status.enum';
 
 export class CreateMovieDto {
   @IsString()
   @IsNotEmpty()
   title: string;
 
-  @IsNumber()
+  @IsInt()
   @IsNotEmpty()
-  year: number;
-
-  @IsNumber()
-  @IsNotEmpty()
-  duration: number;
+  tmdbId: number;
 
   @IsString()
   @IsNotEmpty()
-  description: string;
+  status: MovieStatus;
 }

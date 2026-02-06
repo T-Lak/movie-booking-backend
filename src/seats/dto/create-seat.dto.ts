@@ -1,13 +1,13 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsString } from 'class-validator';
 
 import { SeatType } from '../enums/seat-type.enum';
 
 export class CreateSeatDto {
-  @IsNumber()
+  @IsInt()
   @IsNotEmpty()
   row: number;
 
-  @IsNumber()
+  @IsInt()
   @IsNotEmpty()
   number: number;
 

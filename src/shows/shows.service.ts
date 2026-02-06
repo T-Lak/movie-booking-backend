@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException, Param, ParseIntPipe } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -17,7 +17,7 @@ export class ShowsService {
     return this.showRepository.find();
   }
 
-  async findOne(@Param('id', ParseIntPipe) id: number): Promise<Show> {
+  async findOne(id: number): Promise<Show> {
     const show = await this.showRepository.findOneBy({ id });
     if (!show) {
       throw new NotFoundException(`Show ${id} not found`);

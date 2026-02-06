@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, Param, ParseIntPipe } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 
@@ -17,7 +17,7 @@ export class SeatsService {
     return this.seatsRepository.find();
   }
 
-  async findOne(@Param('id', ParseIntPipe) id: number): Promise<Seat> {
+  async findOne(id: number): Promise<Seat> {
     const seat: Seat | null = await this.seatsRepository.findOneBy({ id });
     if (!seat) {
       throw new NotFoundException(`Seat ${id} not found`);

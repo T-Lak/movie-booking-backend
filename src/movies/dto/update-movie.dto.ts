@@ -1,4 +1,5 @@
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsInt, IsOptional, IsString } from 'class-validator';
+import { MovieStatus } from '../enums/movie-status.enum';
 
 export class UpdateMovieDto {
   @IsOptional()
@@ -6,14 +7,10 @@ export class UpdateMovieDto {
   title?: string;
 
   @IsOptional()
-  @IsNumber()
-  year?: number;
-
-  @IsOptional()
-  @IsNumber()
-  duration?: number;
+  @IsInt()
+  tmdbId?: number;
 
   @IsOptional()
   @IsString()
-  description?: string;
+  status: MovieStatus;
 }
