@@ -10,6 +10,11 @@ import { Seat } from './seats/entities/seat.entity';
 import { Screen } from './screens/entities/screen.entity';
 import { Show } from './shows/entities/show.entity';
 import { Movie } from './movies/entities/movie.entity';
+import { ScheduleModule } from '@nestjs/schedule';
+import { ScreenModule } from './screens/screens.module';
+import { MoviesModule } from './movies/movies.module';
+import { SeatsModule } from './seats/seats.module';
+import { ReservationsModule } from './reservations/reservations.module'
 
 @Module({
   imports: [
@@ -27,7 +32,12 @@ import { Movie } from './movies/entities/movie.entity';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    ScheduleModule.forRoot(),
     ShowsModule,
+    ScreenModule,
+    MoviesModule,
+    SeatsModule,
+    ReservationsModule
   ],
   controllers: [AppController],
   providers: [AppService],

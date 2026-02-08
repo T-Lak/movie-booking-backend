@@ -1,30 +1,30 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 
 import { ReservationsService } from './reservations.service';
-import { Reservation } from './entity/reservation.entity';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
+import { ReservationResponseDto } from './dto/reservation-response.dto';
 
 @Controller('reservation')
 export class ReservationsController {
   constructor(private readonly reservationsService: ReservationsService) {}
 
   @Get()
-  findAll(): Promise<Reservation[]> {
+  findAll(): Promise<ReservationResponseDto[]> {
     return this.reservationsService.findAll();
   }
 
   @Get(':id')
   findOne(
     @Param('id', ParseIntPipe) id: number
-  ): Promise<Reservation> {
+  ): Promise<ReservationResponseDto> {
     return this.reservationsService.findOne(id);
   }
 
   @Post()
   createReservation(
     @Body() createReservationDto: CreateReservationDto
-  ): Promise<Reservation> {
+  ): Promise<ReservationResponseDto> {
     return this.reservationsService.create(createReservationDto);
   }
 
@@ -32,7 +32,7 @@ export class ReservationsController {
   async updateReservation(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateReservationDto,
-  ): Promise<Reservation> {
+  ): Promise<ReservationResponseDto> {
     return this.reservationsService.update(id, dto);
   }
 

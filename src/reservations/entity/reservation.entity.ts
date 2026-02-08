@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Column, Entity, Index, ManyToOne, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 import { Seat } from '../../seats/entities/seat.entity';
 import { Show } from '../../shows/entities/show.entity';
@@ -6,14 +6,15 @@ import { ReservationStatus } from '../enums/reservation-status.enum';
 
 @Entity()
 @Unique(['show', 'seat'])
+@Index(['show', 'status'])
 export class Reservation {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Show)
+  @ManyToOne(() => Show, { nullable: false, onDelete: 'CASCADE' })
   show: Show;
 
-  @ManyToOne(() => Seat)
+  @ManyToOne(() => Seat, { nullable: false })
   seat: Seat;
 
   @Column({ length: 255 })
@@ -22,7 +23,10 @@ export class Reservation {
   @Column({
     type: 'enum',
     enum: ReservationStatus,
-    default: ReservationStatus.NONE,
+    default: ReservationStatus.PENDING,
   })
   status: ReservationStatus;
+
+  @Column({ type: 'timestamp', nullable: true })
+  expiresAt: Date | null;
 }
