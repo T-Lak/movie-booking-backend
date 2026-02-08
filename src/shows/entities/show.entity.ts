@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from 'typeorm';
 
 import { Screen } from '../../screens/entities/screen.entity';
 import { Movie } from '../../movies/entities/movie.entity';
+import { Reservation } from '../../reservations/entity/reservation.entity';
 
 @Entity()
 export class Show {
@@ -19,4 +20,7 @@ export class Show {
 
   @ManyToOne(() => Movie, movie => movie.shows)
   movie: Movie;
+
+  @OneToMany(() => Reservation, r => r.show)
+  reservations: Reservation[];
 }
