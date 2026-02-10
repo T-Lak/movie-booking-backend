@@ -1,13 +1,14 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { Body, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { AdminController } from '../../common/decorators/admin-controller.decorator';
 
-import { SeatsService } from './seats.service';
-import { Seat } from './entities/seat.entity';
-import { CreateSeatDto } from './dto/create-seat.dto';
-import { UpdateSeatDto } from './dto/update-seat.dto';
+import { SeatsAdminService } from '../services/seats.admin.service';
+import { Seat } from '../entities/seat.entity';
+import { CreateSeatDto } from '../dto/create-seat.dto';
+import { UpdateSeatDto } from '../dto/update-seat.dto';
 
-@Controller('seats')
-export class SeatsController {
-  constructor(private readonly seatsService: SeatsService) {}
+@AdminController('seats')
+export class SeatsAdminController {
+  constructor(private readonly seatsService: SeatsAdminService) {}
 
   @Get()
   findAll(): Promise<Seat[]> {

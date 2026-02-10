@@ -2,12 +2,12 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 
-import { Seat } from './entities/seat.entity';
-import { CreateSeatDto } from './dto/create-seat.dto';
-import { UpdateSeatDto } from './dto/update-seat.dto';
+import { Seat } from '../entities/seat.entity';
+import { CreateSeatDto } from '../dto/create-seat.dto';
+import { UpdateSeatDto } from '../dto/update-seat.dto';
 
 @Injectable()
-export class SeatsService {
+export class SeatsAdminService {
   constructor(
     @InjectRepository(Seat)
     private readonly seatsRepository: Repository<Seat>,
