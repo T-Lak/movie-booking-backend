@@ -3,8 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
 import { ShowsModule } from './shows/shows.module';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { Reservation } from './reservations/entity/reservation.entity';
 import { Seat } from './seats/entities/seat.entity';
 import { Screen } from './screens/entities/screen.entity';
@@ -39,7 +37,5 @@ import { ReservationsModule } from './reservations/reservations.module'
     SeatsModule,
     ReservationsModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
