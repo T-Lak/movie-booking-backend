@@ -1,12 +1,17 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Exclude, Expose } from 'class-transformer';
+
 import { Seat } from '../../seats/entities/seat.entity';
 import { Show } from '../../shows/entities/show.entity';
 
+@Exclude()
 @Entity()
 export class Screen {
+  @Expose()
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Expose()
   @Column()
   name: string;
 
