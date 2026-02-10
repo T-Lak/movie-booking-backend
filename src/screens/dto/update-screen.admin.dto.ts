@@ -1,6 +1,6 @@
 import { IsOptional, IsString } from 'class-validator';
 
-export class UpdateScreenDto {
+export class UpdateScreenAdminDto {
   @IsString()
   @IsOptional()
   name: string;

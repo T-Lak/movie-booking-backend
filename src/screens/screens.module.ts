@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ScreensService } from './screens.service';
-import { ScreensController } from './screens.controller';
+import { ScreensAdminService } from './services/screens.admin.service';
+import { ScreensAdminController } from './controllers/screens.admin.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Screen])],
-  controllers: [ScreensController],
-  providers: [ScreensService],
+  controllers: [ScreensAdminController],
+  providers: [ScreensAdminService],
 })
 export class ScreenModule {}
