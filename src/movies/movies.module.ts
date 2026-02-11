@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HttpModule } from '@nestjs/axios';
 
-import { MoviesService } from './movies.service';
-import { MoviesController } from './movies.controller';
+import { MoviesClientService } from './services/movies.client.service';
+import { MoviesClientController } from './controllers/movies.client.controller';
 import { Movie } from './entities/movie.entity';
 
 @Module({
@@ -11,7 +11,7 @@ import { Movie } from './entities/movie.entity';
     TypeOrmModule.forFeature([Movie]),
     HttpModule
   ],
-  controllers: [MoviesController],
-  providers: [MoviesService],
+  controllers: [MoviesClientController],
+  providers: [MoviesClientService],
 })
 export class MoviesModule {}
