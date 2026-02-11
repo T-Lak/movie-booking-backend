@@ -2,16 +2,24 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HttpModule } from '@nestjs/axios';
 
-import { MoviesClientService } from './services/movies.client.service';
-import { MoviesClientController } from './controllers/movies.client.controller';
 import { Movie } from './entities/movie.entity';
+import { MoviesClientController } from './controllers/movies.client.controller';
+import { MoviesAdminController } from './controllers/movies.admin.controller';
+import { MoviesClientService } from './services/movies.client.service';
+import { MoviesAdminService } from './services/movies.admin.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Movie]),
     HttpModule
   ],
-  controllers: [MoviesClientController],
-  providers: [MoviesClientService],
+  controllers: [
+    MoviesClientController,
+    MoviesAdminController,
+  ],
+  providers: [
+    MoviesClientService,
+    MoviesAdminService,
+  ],
 })
 export class MoviesModule {}
