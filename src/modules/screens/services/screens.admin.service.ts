@@ -5,12 +5,16 @@ import { DeleteResult, Repository } from 'typeorm';
 import { Screen } from '../entities/screen.entity';
 import { UpdateScreenAdminDto } from '../dto/update-screen.admin.dto';
 import { CreateScreenAdminDto } from '../dto/create-screen.admin.dto';
+import { Seat } from '../../seats/entities/seat.entity';
+import { SeatType } from '../../seats/enums/seat-type.enum';
+import { IScreenLayout, SCREEN_LAYOUTS } from '../helpers/misc.helper';
 
 @Injectable()
 export class ScreensAdminService {
   constructor(
     @InjectRepository(Screen)
     private readonly  screenRepository: Repository<Screen>,
+    private readonly  seatRepository: Repository<Seat>,
   ) {}
 
   async findAll(): Promise<Screen[]> {
@@ -27,11 +31,37 @@ export class ScreensAdminService {
     return screen;
   }
 
-  create(
-    createScreenDto: CreateScreenAdminDto
+  async create(
+    dto: CreateScreenAdminDto
   ): Promise<Screen> {
-    const screen: Screen = this.screenRepository.create(createScreenDto);
-    return this.screenRepository.save(screen);
+    const layout: IScreenLayout = SCREEN_LAYOUTS[dto.size]
+
+    const screen: Screen = this.screenRepository.create({
+      name: dto.name,
+      rows: layout.rows,
+      seatsPerRow: layout.seatsPerRow,
+    });
+
+    const saved = await this.screenRepository.save(screen);
+    await this.createSeats(saved);
+    return saved;
+  }
+
+  private async createSeats(screen: Screen): Promise<void> {
+    const seats: Seat[] = [];
+    for (let row = 0; row < screen.rows; row++) {
+      for (let number = 0; number < screen.totalSeats; number++) {
+        seats.push(
+          this.seatRepository.create({
+            row: row,
+            number: number,
+            screen: screen,
+            type: SeatType.STANDARD,
+          })
+        )
+      }
+    }
+    await this.seatRepository.save(seats)
   }
 
   async update(

@@ -15,6 +15,18 @@ export class Screen {
   @Column()
   name: string;
 
+  @Expose()
+  @Column()
+  rows: number;
+
+  @Expose()
+  @Column()
+  seatsPerRow: number;
+
+  get totalSeats(): number {
+    return this.rows * this.seatsPerRow;
+  }
+
   @OneToMany(() => Seat, seat => seat.screen)
   seats: Seat[];
 
