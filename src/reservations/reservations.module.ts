@@ -2,15 +2,21 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { Reservation } from './entity/reservation.entity';
-import { ReservationsController } from './reservations.controller';
-import { ReservationsService } from './reservations.service';
-import { ReservationsCleanupService } from './reservations.cleanup.service';
+import { ReservationsClientController } from './controllers/reservations.client.controller';
+import { ReservationsClientService } from './services/reservations.client.service';
+import { ReservationsCleanupService } from './services/reservations.cleanup.service';
+import { ReservationsAdminController } from './controllers/reservations.admin.controller';
+import { ReservationsAdminService } from './services/reservations.admin.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Reservation])],
-  controllers: [ReservationsController],
+  controllers: [
+    ReservationsClientController,
+    ReservationsAdminController,
+  ],
   providers: [
-    ReservationsService,
+    ReservationsClientService,
+    ReservationsAdminService,
     ReservationsCleanupService
   ],
 })

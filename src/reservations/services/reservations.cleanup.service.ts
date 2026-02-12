@@ -3,8 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { LessThan, Repository } from 'typeorm';
 import { Cron } from '@nestjs/schedule';
 
-import { Reservation } from './entity/reservation.entity';
-import { ReservationStatus } from './enums/reservation-status.enum';
+import { Reservation } from '../entity/reservation.entity';
+import { ReservationStatus } from '../enums/reservation-status.enum';
 
 @Injectable()
 export class ReservationsCleanupService {
