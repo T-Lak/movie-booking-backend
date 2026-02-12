@@ -1,11 +1,11 @@
-<p align="left">
-  <img src="https://img.shields.io/badge/Framework-NestJS-bf3f5c">
-  <img src="https://img.shields.io/badge/Language-TypeScript-3178c6">
-  <img src="https://img.shields.io/badge/ORM-TypeORM-2560eb">
-  <img src="https://img.shields.io/badge/Tests-Jest-9966ff">
-  <img src="https://img.shields.io/badge/Auth-JWT-5fb885">
-  <img src="https://img.shields.io/badge/Database-PostgreSQL-336791">
-  <img src="https://img.shields.io/badge/License-MIT-6db35d">
+<p>
+  <img alt="" src="https://img.shields.io/badge/Framework-NestJS-bf3f5c">
+  <img alt="" src="https://img.shields.io/badge/Language-TypeScript-3178c6">
+  <img alt="" src="https://img.shields.io/badge/ORM-TypeORM-2560eb">
+  <img alt="" src="https://img.shields.io/badge/Tests-Jest-9966ff">
+  <img alt="" src="https://img.shields.io/badge/Auth-JWT-5fb885">
+  <img alt="" src="https://img.shields.io/badge/Database-PostgreSQL-336791">
+  <img alt="" src="https://img.shields.io/badge/License-MIT-6db35d">
 </p>
 
 ## Movie Booking System (Backend)
@@ -27,16 +27,16 @@ Besides basic CRUD this project solves critical distributed system challenges, s
 
 ```text
 src/
-├── common/             # Global filters, interceptors, and custom decorators
-├── modules/
 │   ├── common/         # Custom Decorators, Guards, global Enums, and helpers
+├── modules/
 │   ├── auth/           # JWT strategy & role-based access control (RBAC)
+│   ├── bookings/       # Core engine (atomic booking & concurrency handling)
 │   ├── movies/         # Movie catalog + external API integration
-│   ├── shows/          # Showtimes & scheduling (Time-overlap validation)
 │   ├── screens/        # Theater room configurations
 │   ├── seats/          # Seat mapping & availability
-│   └── reservations/   # Core engine (atomic booking & concurrency handling)
-├── seeds/              # Initial data to fill the DB with 
+│   └── shows/          # Showtimes & scheduling (Time-overlap validation)
+├── db/               
+│   ├── seeds/          # Initial data to fill the DB with 
 └── test/               # Integration tests (concurrency & auth)
 ```
 
@@ -49,6 +49,11 @@ This project requires **PostgreSQL** and specific environment variables to funct
     * `JWT_SECRET`: A secure string for signing authentication tokens.
     * `TMDB_API_KEY`: Your API key from [The Movie Database](https://www.themoviedb.org/documentation/api).
 * **Schema Management**: Handled via TypeORM migrations.
+
+To populate the database with dummy data run:
+```bash
+npm run seed
+```
 
 ### Running the Project (WIP)
 
