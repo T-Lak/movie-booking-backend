@@ -27,7 +27,9 @@ Besides basic CRUD this project solves critical distributed system challenges, s
 
 ```text
 src/
-│   ├── common/         # Custom Decorators, Guards, global Enums, and helpers
+├── common/             # Custom Decorators, Guards, global Enums, and helpers
+├── db/               
+│   ├── seeds/          # Initial data to fill the DB with 
 ├── modules/
 │   ├── auth/           # JWT strategy & role-based access control (RBAC)
 │   ├── bookings/       # Core engine (atomic booking & concurrency handling)
@@ -35,8 +37,6 @@ src/
 │   ├── screens/        # Theater room configurations
 │   ├── seats/          # Seat mapping & availability
 │   └── shows/          # Showtimes & scheduling (Time-overlap validation)
-├── db/               
-│   ├── seeds/          # Initial data to fill the DB with 
 └── test/               # Integration tests (concurrency & auth)
 ```
 
