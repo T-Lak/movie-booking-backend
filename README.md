@@ -29,7 +29,7 @@ Besides basic CRUD this project solves critical distributed system challenges, s
 src/
 ├── common/             # Custom Decorators, Guards, global Enums, and helpers
 ├── db/               
-│   ├── seeds/          # Initial data to fill the DB with 
+│   └── seeds/          # Initial data to fill the DB with 
 ├── modules/
 │   ├── auth/           # JWT strategy & role-based access control (RBAC)
 │   ├── bookings/       # Core engine (atomic booking & concurrency handling)
@@ -70,4 +70,4 @@ $ npm run start:dev
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
