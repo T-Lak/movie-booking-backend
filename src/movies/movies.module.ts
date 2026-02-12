@@ -7,6 +7,7 @@ import { MoviesClientController } from './controllers/movies.client.controller';
 import { MoviesAdminController } from './controllers/movies.admin.controller';
 import { MoviesClientService } from './services/movies.client.service';
 import { MoviesAdminService } from './services/movies.admin.service';
+import { MoviesApiService } from './services/movies.api.service';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { MoviesAdminService } from './services/movies.admin.service';
   providers: [
     MoviesClientService,
     MoviesAdminService,
+    MoviesApiService,
   ],
 })
 export class MoviesModule {}
