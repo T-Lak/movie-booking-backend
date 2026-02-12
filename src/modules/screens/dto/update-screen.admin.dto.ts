@@ -1,15 +1,12 @@
-import { IsInt, IsOptional, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { ScreenSize } from '../enums/screen-size.enum';
 
 export class UpdateScreenAdminDto {
   @IsString()
   @IsOptional()
   name: string;
 
-  @IsInt()
-  @IsOptional()
-  rows: number;
-
-  @IsInt()
-  @IsOptional()
-  seatsPerRow: number;
+  @IsEnum(ScreenSize)
+  @IsNotEmpty()
+  size: ScreenSize;
 }
