@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { Screen } from '../screens/entities/screen.entity';
+import { Screen } from '../modules/screens/entities/screen.entity';
 
 export async function seedScreens(
   screenRepo: Repository<Screen>

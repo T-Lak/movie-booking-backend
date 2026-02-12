@@ -1,5 +1,5 @@
 import { Post, Param, Body, ParseIntPipe, Patch, Delete } from '@nestjs/common';
-import { AdminController } from '../../common/decorators/admin-controller.decorator';
+import { AdminController } from '../../../common/decorators/admin-controller.decorator';
 
 import { Show } from '../entities/show.entity';
 import { CreateShowDto } from '../dto/create-show.dto';

@@ -36,6 +36,7 @@ src/
 │   ├── screens/        # Theater room configurations
 │   ├── seats/          # Seat mapping & availability
 │   └── reservations/   # Core engine (atomic booking & concurrency handling)
+├── seeds/              # Initial data to fill the DB with 
 └── test/               # Integration tests (concurrency & auth)
 ```
 

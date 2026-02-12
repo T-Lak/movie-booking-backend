@@ -2,17 +2,17 @@ import { ClassSerializerInterceptor, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
-import { ShowsModule } from './shows/shows.module';
-import { Reservation } from './reservations/entity/reservation.entity';
-import { Seat } from './seats/entities/seat.entity';
-import { Screen } from './screens/entities/screen.entity';
-import { Show } from './shows/entities/show.entity';
-import { Movie } from './movies/entities/movie.entity';
+import { ShowsModule } from './modules/shows/shows.module';
+import { Reservation } from './modules/reservations/entity/reservation.entity';
+import { Seat } from './modules/seats/entities/seat.entity';
+import { Screen } from './modules/screens/entities/screen.entity';
+import { Show } from './modules/shows/entities/show.entity';
+import { Movie } from './modules/movies/entities/movie.entity';
 import { ScheduleModule } from '@nestjs/schedule';
-import { ScreenModule } from './screens/screens.module';
-import { MoviesModule } from './movies/movies.module';
-import { SeatsModule } from './seats/seats.module';
-import { ReservationsModule } from './reservations/reservations.module'
+import { ScreenModule } from './modules/screens/screens.module';
+import { MoviesModule } from './modules/movies/movies.module';
+import { SeatsModule } from './modules/seats/seats.module';
+import { ReservationsModule } from './modules/reservations/reservations.module'
 import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({

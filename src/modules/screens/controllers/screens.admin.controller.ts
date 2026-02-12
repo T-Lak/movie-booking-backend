@@ -1,6 +1,6 @@
 import { Body, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 
-import { AdminController } from '../../common/decorators/admin-controller.decorator';
+import { AdminController } from '../../../common/decorators/admin-controller.decorator';
 import { ScreensAdminService } from '../services/screens.admin.service';
 import { CreateScreenAdminDto } from '../dto/create-screen.admin.dto';
 import { UpdateScreenAdminDto } from '../dto/update-screen.admin.dto';

@@ -1,5 +1,5 @@
 import { Body, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
-import { AdminController } from '../../common/decorators/admin-controller.decorator';
+import { AdminController } from '../../../common/decorators/admin-controller.decorator';
 
 import { SeatsAdminService } from '../services/seats.admin.service';
 import { Seat } from '../entities/seat.entity';

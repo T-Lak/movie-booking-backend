@@ -1,6 +1,6 @@
-import { Show } from '../shows/entities/show.entity';
+import { Show } from '../modules/shows/entities/show.entity';
 import { Repository } from 'typeorm';
-import { Movie } from '../movies/entities/movie.entity';
+import { Movie } from '../modules/movies/entities/movie.entity';
 
 export async function seedShows(showRepo: Repository<Show>, movies: Movie[]): Promise<Show[]> {
   const shows: Show[] = showRepo.create([

@@ -1,6 +1,6 @@
 import { Body, Get, Param, ParseIntPipe, Patch } from '@nestjs/common';
 
-import { AdminController } from '../../common/decorators/admin-controller.decorator';
+import { AdminController } from '../../../common/decorators/admin-controller.decorator';
 import { ReservationResponseDto } from '../dto/reservation-response.dto';
 import { UpdateReservationDto } from '../dto/update-reservation.dto';
 import { ReservationsAdminService } from '../services/reservations.admin.service';

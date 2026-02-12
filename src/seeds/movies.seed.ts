@@ -1,7 +1,7 @@
 import { Repository } from 'typeorm';
 
-import { Movie } from '../movies/entities/movie.entity';
-import { MovieStatus } from '../movies/enums/movie-status.enum';
+import { Movie } from '../modules/movies/entities/movie.entity';
+import { MovieStatus } from '../modules/movies/enums/movie-status.enum';
 
 export async function seedMovies(movieRepo: Repository<Movie>) {
   const movies: Movie[] = movieRepo.create([

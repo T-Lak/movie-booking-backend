@@ -2,7 +2,7 @@ import {
   Body, Delete, Param, Patch, Post, ParseIntPipe,
 } from '@nestjs/common';
 
-import { AdminController } from '../../common/decorators/admin-controller.decorator';
+import { AdminController } from '../../../common/decorators/admin-controller.decorator';
 import { UpdateMovieDto } from '../dto/update-movie.dto';
 import { CreateMovieDto } from '../dto/create-movie.dto';
 import { MovieAdminResponseDto } from '../dto/movie-admin-response.dto';
