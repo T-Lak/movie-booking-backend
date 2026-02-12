@@ -1,9 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 import { Seat } from '../entities/seat.entity';
-import { CreateSeatDto } from '../dto/create-seat.dto';
 import { UpdateSeatDto } from '../dto/update-seat.dto';
 
 @Injectable()
@@ -25,11 +24,6 @@ export class SeatsAdminService {
     return seat;
   }
 
-  create(createSeatDto: CreateSeatDto): Promise<Seat> {
-    const seat: Seat = this.seatsRepository.create(createSeatDto);
-    return this.seatsRepository.save(seat);
-  }
-
   async update(id: number, dto: UpdateSeatDto): Promise<Seat> {
     const seat: Seat | null = await this.seatsRepository.findOne({ where: { id } });
     if (!seat) {
@@ -37,12 +31,5 @@ export class SeatsAdminService {
     }
     Object.assign(seat, dto);
     return this.seatsRepository.save(seat);
-  }
-
-  async delete(id: number): Promise<void> {
-    const result: DeleteResult = await this.seatsRepository.delete(id);
-    if (result.affected === 0) {
-      throw new NotFoundException(`Seat with id ${id} not found`);
-    }
   }
 }
