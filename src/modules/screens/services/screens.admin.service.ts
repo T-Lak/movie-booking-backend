@@ -3,17 +3,18 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 
 import { Screen } from '../entities/screen.entity';
-import { UpdateScreenAdminDto } from '../dto/update-screen.admin.dto';
-import { CreateScreenAdminDto } from '../dto/create-screen.admin.dto';
 import { Seat } from '../../seats/entities/seat.entity';
 import { SeatType } from '../../seats/enums/seat-type.enum';
 import { IScreenLayout, SCREEN_LAYOUTS } from '../helpers/misc.helper';
+import { UpdateScreenAdminDto } from '../dto/update-screen.admin.dto';
+import { CreateScreenAdminDto } from '../dto/create-screen.admin.dto';
 
 @Injectable()
 export class ScreensAdminService {
   constructor(
     @InjectRepository(Screen)
     private readonly  screenRepository: Repository<Screen>,
+    @InjectRepository(Seat)
     private readonly  seatRepository: Repository<Seat>,
   ) {}
 
