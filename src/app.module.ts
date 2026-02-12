@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
 import { ShowsModule } from './modules/shows/shows.module';
-import { Reservation } from './modules/reservations/entity/reservation.entity';
+import { Reservation } from './modules/bookings/entity/reservation.entity';
 import { Seat } from './modules/seats/entities/seat.entity';
 import { Screen } from './modules/screens/entities/screen.entity';
 import { Show } from './modules/shows/entities/show.entity';
@@ -12,7 +12,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { ScreenModule } from './modules/screens/screens.module';
 import { MoviesModule } from './modules/movies/movies.module';
 import { SeatsModule } from './modules/seats/seats.module';
-import { ReservationsModule } from './modules/reservations/reservations.module'
+import { BookingsModule } from './modules/bookings/bookings.module'
 import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
@@ -36,7 +36,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
     ScreenModule,
     MoviesModule,
     SeatsModule,
-    ReservationsModule
+    BookingsModule
   ],
   providers: [
     {

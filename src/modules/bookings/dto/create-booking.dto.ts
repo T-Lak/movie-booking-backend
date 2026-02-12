@@ -1,7 +1,7 @@
 import { ArrayNotEmpty, IsArray, IsEmail, IsInt, IsNotEmpty } from 'class-validator';
 import { Transform } from 'class-transformer';
 
-export class CreateReservationDto {
+export class CreateBookingDto {
   @IsInt()
   @IsNotEmpty()
   showId: number

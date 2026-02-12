@@ -3,7 +3,7 @@ import { Exclude, Expose } from 'class-transformer';
 
 import { Screen } from '../../screens/entities/screen.entity';
 import { SeatType } from '../enums/seat-type.enum';
-import { Reservation } from '../../reservations/entity/reservation.entity';
+import { Reservation } from '../../bookings/entity/reservation.entity';
 
 @Exclude()
 @Entity()
