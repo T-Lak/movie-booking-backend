@@ -2,14 +2,14 @@ import { BadRequestException, ConflictException, Injectable, NotFoundException }
 import { InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, In, MoreThan, Repository } from 'typeorm';
 
-import { Reservation } from '../entity/reservation.entity';
-import { CreateBookingDto } from '../dto/create-booking.dto';
-import { BookingResponseDto } from '../dto/booking-response.dto';
 import { toResponse } from '../helpers/to-respone.helper';
+import { Booking } from '../entity/bookings.entity';
+import { Reservation } from '../entity/reservation.entity';
 import { Show } from '../../shows/entities/show.entity';
 import { Seat } from '../../seats/entities/seat.entity';
+import { CreateBookingDto } from '../dto/create-booking.dto';
+import { BookingResponseDto } from '../dto/booking-response.dto';
 import { BookingStatus } from '../enums/bookings-status.enum';
-import { Booking } from '../entity/bookings.entity';
 
 @Injectable()
 export class BookingsClientService {
@@ -22,7 +22,11 @@ export class BookingsClientService {
     return await this.bookingRepo.manager.transaction(
       async (manager: EntityManager): Promise<BookingResponseDto> => {
         const show: Show = await this.getShowOrThrow(dto.showId, manager);
-        const seats: Seat[] = await this.getSeatsOrThrow(dto.seatIds, manager);
+        const seats: Seat[] = await this.getSeatsOrThrow(
+          dto.seatIds,
+          show.screen.id,
+          manager
+        );
 
         await this.ensureSeatsAreAvailable(dto.showId, dto.seatIds, manager);
 
@@ -47,7 +51,6 @@ export class BookingsClientService {
     ): Promise<BookingResponseDto> => {
       const booking: Booking | null = await manager.findOne(Booking, {
         where: { id },
-        relations: ['reservations'],
         lock: { mode: 'pessimistic_write' }
       });
 
@@ -57,8 +60,13 @@ export class BookingsClientService {
         );
       }
 
+      const reservations: Reservation[] = await manager.find(Reservation, {
+        where: { booking: { id: id } }
+      });
+
       booking.status = BookingStatus.CONFIRMED;
       const saved: Booking = await manager.save(booking);
+      saved.reservations = reservations;
       return toResponse(saved);
     });
   }
@@ -95,10 +103,20 @@ export class BookingsClientService {
     showId: number,
     manager: EntityManager
   ): Promise<Show> {
-    const show: Show | null = await manager.findOneBy(Show, { id: showId })
+    const show: Show | null = await manager.findOne(Show, {
+      where: { id: showId },
+      relations: ['screen'],
+    })
 
     if (!show) {
       throw new NotFoundException(`Show ${showId} not found`);
+    }
+
+    const buffer = 15 * 60 * 1000;
+    if (new Date(show.start_time).getTime() - Date.now() < buffer) {
+      throw new BadRequestException(
+        'Online booking is closed for this show.'
+      );
     }
 
     return show;
@@ -106,10 +124,14 @@ export class BookingsClientService {
 
   private async getSeatsOrThrow(
     seatIds: number[],
+    screenId: number,
     manager: EntityManager
   ): Promise<Seat[]> {
     const seats: Seat[] = await manager.find(Seat, {
-      where: { id: In(seatIds)}
+      where: {
+        id: In(seatIds),
+        screen: { id: screenId },
+      },
     })
 
     if (seats.length !== seatIds.length) {
@@ -145,14 +167,14 @@ export class BookingsClientService {
           }
         }
       ],
-      relations: ['booking'],
+      relations: ['booking', 'seat'],
       lock: { mode: 'pessimistic_write' }
     });
 
     if (activeReservations.length > 0) {
       const takenIds: number[] = activeReservations.map(r => r.seat.id);
       throw new ConflictException(
-        `Seats already reserved: ${takenIds.join(', ')}`
+        `Seat(s) already reserved: ${takenIds.join(', ')}`
       );
     }
   }
