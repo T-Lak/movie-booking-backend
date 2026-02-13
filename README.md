@@ -15,7 +15,7 @@ Besides basic CRUD this project solves critical distributed system challenges, s
 
 **Note:** This is an ongoing project with more tests, and a frontend being added soon.
 
---- 
+
 ### Key Technical Features
 
 * **Concurrency Control** – Pessimistic locking (`pessimistic_write`) prevents double-booking of seats during peak traffic.
@@ -23,7 +23,7 @@ Besides basic CRUD this project solves critical distributed system challenges, s
 * **Clean Architecture**  – Custom **composition decorators** (e.g., `@AdminController`) enforce security and maintain DRY principles across modules.
 * **Encapsulated Modules** – Strict separation of `Public Client` vs `Admin` contexts, sharing a unified service layer for business logic.
 * **Data Sanitization** – Global interceptors and class-transformers secure sensitive fields like emails and internal IDs.
----
+
 ### Project Structure
 
 ```text
@@ -40,7 +40,7 @@ src/
 │   └── shows/          # Times & scheduling (Time-overlap validation)
 └── test/               # Integration tests (concurrency & auth)
 ```
----
+
 ## Getting Started
 
 ### 1. Installation & Environment
@@ -61,7 +61,7 @@ Create two files in the root directory: .env and .env.test. Use the credentials 
 `.env.test` (Testing):
 - DB_PORT=5433
 - DB_DATABASE=movie_app_test
----
+
 ### 2. Database Infrastructure
 This project uses Docker to manage PostgreSQL instances. This ensures your development data stays safe while tests 
 wipe the test database.
@@ -70,7 +70,7 @@ wipe the test database.
 # Spin up both Development (5432) and Testing (5433) databases
 $ docker-compose up -d
 ```
----
+
 ### 3. Running the Project 
 
 ```bash
@@ -83,7 +83,7 @@ $ npm run seed
 # 3. Start the server in watch mode
 $ npm run start:dev
 ```
----
+
 ## Testing
 We use Jest for E2E testing. The test suite is configured to automatically use the `.env.test` environment to target 
 the isolated test container.
@@ -95,7 +95,6 @@ $ npm run test:e2e
 **Note**: The E2E tests include a beforeEach hook that truncates all tables to ensure a clean state for every test case. 
 Do not run tests against your production or primary development database!
 
----
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
