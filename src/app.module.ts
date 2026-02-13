@@ -14,6 +14,7 @@ import { MoviesModule } from './modules/movies/movies.module';
 import { SeatsModule } from './modules/seats/seats.module';
 import { BookingsModule } from './modules/bookings/bookings.module'
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -36,7 +37,8 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
     ScreenModule,
     MoviesModule,
     SeatsModule,
-    BookingsModule
+    BookingsModule,
+    AuthModule,
   ],
   providers: [
     {
