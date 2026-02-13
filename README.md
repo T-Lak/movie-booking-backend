@@ -13,7 +13,7 @@
 An architecturally robust Cinema Management API focused on **reliability** and **data integrity**. 
 Besides basic CRUD this project solves critical distributed system challenges, such as **race conditions** and **transactional atomicity**.
 
-**Note:** This is an on-going project with dockerization, tests, and a frontend being added soon.
+**Note:** This is an ongoing project with dockerization, tests, and a frontend being added soon.
 
 ### Key Technical Features
 
@@ -36,7 +36,7 @@ src/
 │   ├── movies/         # Movie catalog + external API integration
 │   ├── screens/        # Theater room configurations
 │   ├── seats/          # Seat mapping & availability
-│   └── shows/          # Showtimes & scheduling (Time-overlap validation)
+│   └── shows/          # Times & scheduling (Time-overlap validation)
 └── test/               # Integration tests (concurrency & auth)
 ```
 
@@ -52,7 +52,7 @@ This project requires **PostgreSQL** and specific environment variables to funct
 
 To populate the database with dummy data run:
 ```bash
-npm run seed
+$ npm run seed
 ```
 
 ### Running the Project (WIP)
