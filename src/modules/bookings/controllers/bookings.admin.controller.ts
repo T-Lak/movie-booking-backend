@@ -4,7 +4,7 @@ import { AdminController } from '../../../common/decorators/admin-controller.dec
 import { BookingResponseDto } from '../dto/booking-response.dto';
 import { BookingsAdminService } from '../services/bookings.admin.service';
 
-@AdminController('booking')
+@AdminController('bookings')
 export class BookingsAdminController {
   constructor(private readonly bookingsAdminService: BookingsAdminService) {}
 
