@@ -4,7 +4,7 @@ import { DataSource } from 'typeorm';
 
 import { AppModule } from '../../app.module';
 import { User } from '../../modules/auth/entities/user.entity';
-import { seedUser } from './user.seed';
+import { seedUser } from './users.seed';
 import { Movie } from '../../modules/movies/entities/movie.entity';
 import { seedMovies } from './movies.seed';
 import { Screen } from '../../modules/screens/entities/screen.entity';

@@ -113,7 +113,7 @@ export class BookingsClientService {
     }
 
     const buffer = 15 * 60 * 1000;
-    if (new Date(show.start_time).getTime() - Date.now() < buffer) {
+    if (new Date(show.startTime).getTime() - Date.now() < buffer) {
       throw new BadRequestException(
         'Online booking is closed for this show.'
       );

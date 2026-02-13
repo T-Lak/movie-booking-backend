@@ -4,15 +4,15 @@ import { Type } from 'class-transformer';
 export class UpdateShowDto {
   @IsString()
   @IsOptional()
-  movie_title: string;
+  movieTitle: string;
 
   @Type(() => Date)
   @IsDate()
   @IsOptional()
-  start_time: Date;
+  startTime: Date;
 
   @Type(() => Date)
   @IsDate()
   @IsOptional()
-  end_time: Date;
+  endTime: Date;
 }

@@ -4,13 +4,13 @@ import { Type } from 'class-transformer';
 export class CreateShowDto {
   @IsString()
   @IsNotEmpty()
-  movie_title: string;
+  movieTitle: string;
 
   @Type(() => Date)
   @IsDate()
-  start_time: Date;
+  startTime: Date;
 
   @Type(() => Date)
   @IsDate()
-  end_time: Date;
+  endTime: Date;
 }

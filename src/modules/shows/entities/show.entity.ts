@@ -14,11 +14,11 @@ export class Show {
 
   @Expose()
   @Column()
-  start_time: Date;
+  startTime: Date;
 
   @Expose()
   @Column()
-  end_time: Date;
+  endTime: Date;
 
   @ManyToOne(() => Screen, screen => screen.shows)
   screen: Screen;

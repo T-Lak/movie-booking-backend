@@ -29,20 +29,20 @@ export async function seedShows(
 
     showsData.push(
       {
-        start_time: relativeDate(index, 14 + index),
-        end_time: relativeDate(index, 16 + index),
+        startTime: relativeDate(index, 14 + index),
+        endTime: relativeDate(index, 16 + index),
         screen: primaryScreen,
         movie: movie,
       },
       {
-        start_time: relativeDate(index + 7, 18),
-        end_time: relativeDate(index + 7, 20),
+        startTime: relativeDate(index + 7, 18),
+        endTime: relativeDate(index + 7, 20),
         screen: secondaryScreen,
         movie: movie,
       },
       {
-        start_time: relativeDate(index + 14, 21),
-        end_time: relativeDate(index + 14, 23),
+        startTime: relativeDate(index + 14, 21),
+        endTime: relativeDate(index + 14, 23),
         screen: screens[2],
         movie: movie,
       }

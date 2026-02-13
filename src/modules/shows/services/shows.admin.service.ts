@@ -14,8 +14,8 @@ export class ShowsAdminService {
   ) {}
 
   create(dto: CreateShowDto): Promise<Show> {
-    const start = new Date(dto.start_time);
-    const end = new Date(dto.end_time);
+    const start = new Date(dto.startTime);
+    const end = new Date(dto.endTime);
     const now = new Date();
 
     if (start <= now) {
