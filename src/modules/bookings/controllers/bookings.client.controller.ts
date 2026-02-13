@@ -4,7 +4,7 @@ import { BookingsClientService } from '../services/bookings.client.service';
 import { CreateBookingDto } from '../dto/create-booking.dto';
 import { BookingResponseDto } from '../dto/booking-response.dto';
 
-@Controller('booking')
+@Controller('bookings')
 export class BookingsClientController {
   constructor(private readonly bookingsClientService: BookingsClientService) {}
 
