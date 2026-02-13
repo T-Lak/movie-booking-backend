@@ -6,6 +6,7 @@ import { toResponse } from '../helpers/to-respone.helper';
 import { BookingResponseDto } from '../dto/booking-response.dto';
 import { Booking } from '../entity/bookings.entity';
 import { BookingStatus } from '../enums/bookings-status.enum';
+import { Reservation } from '../entity/reservation.entity';
 
 @Injectable()
 export class BookingsAdminService {
@@ -16,13 +17,13 @@ export class BookingsAdminService {
 
   async findAll(): Promise<BookingResponseDto[]> {
     const bookings: Booking[] = await this.bookingRepository
-      .find({ relations: ['show', 'seat'], })
+      .find({ relations: ['reservations'], })
     return bookings.map(toResponse)
   }
 
   async findOne(id: number): Promise<BookingResponseDto> {
     const booking: Booking | null = await this.bookingRepository
-      .findOne({ where: { id }, relations: ['show', 'seat'], });
+      .findOne({ where: { id }, relations: ['reservations'], });
     if (!booking) {
       throw new NotFoundException(`Booking ${id} not found`)
     }
@@ -48,6 +49,8 @@ export class BookingsAdminService {
 
       booking.status = BookingStatus.CANCELLED;
       await manager.save(booking);
+
+      await manager.delete(Reservation, { booking: { id } });
     });
   }
 }
