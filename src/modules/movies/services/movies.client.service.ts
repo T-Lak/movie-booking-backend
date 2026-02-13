@@ -1,7 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 
-import { Movie } from '../entities/movie.entity';
 import { MovieStatus } from '../enums/movie-status.enum';
 import { MovieResponseDto } from '../dto/movie-response.dto';
 import { MoviesApiService } from './movies.api.service';
@@ -10,7 +8,6 @@ import { MoviesApiService } from './movies.api.service';
 export class MoviesClientService {
 
   constructor(
-    @InjectRepository(Movie)
     private readonly movieApiService: MoviesApiService
   ) {}
 

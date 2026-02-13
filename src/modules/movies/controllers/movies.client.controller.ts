@@ -6,7 +6,7 @@ import { MoviesClientService } from '../services/movies.client.service';
 import { MovieStatus } from '../enums/movie-status.enum';
 import { MovieResponseDto } from '../dto/movie-response.dto';
 
-@Controller('movie')
+@Controller('movies')
 export class MoviesClientController {
   constructor(private readonly moviesService: MoviesClientService) {}
 
