@@ -3,14 +3,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { LessThan, Repository } from 'typeorm';
 import { Cron } from '@nestjs/schedule';
 
-import { Reservation } from '../entity/reservation.entity';
 import { BookingStatus } from '../enums/bookings-status.enum';
 import { Booking } from '../entity/bookings.entity';
 
 @Injectable()
 export class BookingsCleanupService {
   constructor(
-    @InjectRepository(Reservation)
+    @InjectRepository(Booking)
     private readonly bookingRepo: Repository<Booking>,
   ) {}
 
