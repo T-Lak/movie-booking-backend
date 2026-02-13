@@ -43,7 +43,7 @@ export class ScreensAdminService {
       seatsPerRow: layout.seatsPerRow,
     });
 
-    const saved = await this.screenRepository.save(screen);
+    const saved: Screen = await this.screenRepository.save(screen);
     await this.createSeats(saved);
     return saved;
   }
