@@ -9,7 +9,7 @@ import { BookingStatus } from '../src/modules/bookings/enums/bookings-status.enu
 import { MovieStatus } from '../src/modules/movies/enums/movie-status.enum';
 import { MoviesApiService } from '../src/modules/movies/services/movies.api.service';
 
-describe('Bookings (e2d)', () => {
+describe('Bookings (e2e)', () => {
   let app: INestApplication;
   let dataSource: DataSource;
 
