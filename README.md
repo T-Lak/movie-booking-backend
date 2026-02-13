@@ -94,6 +94,7 @@ $ npm run test:e2e
 
 **Note**: The E2E tests include a beforeEach hook that truncates all tables to ensure a clean state for every test case. 
 Do not run tests against your production or primary development database!
+
 ---
 ## License
 
