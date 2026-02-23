@@ -42,7 +42,7 @@ src/
 ```
 
 #### System Architecture
-![image](./assets/er_diagram.svg)
+![image](./assets/er_diagram.png)
 
 1. **Concurrency**: The Reservation table acts as a junction to handle seat-locking, preventing double-bookings.
 2. **Encapsulation**: Foreign keys (marked with -) are excluded from public API responses to maintain a clean data contract.
