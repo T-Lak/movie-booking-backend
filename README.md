@@ -16,7 +16,7 @@ Besides basic CRUD this project solves critical distributed system challenges, s
 **Note:** This is an ongoing project with more tests, and a frontend being added soon.
 
 
-### Key Technical Features
+#### Key Technical Features
 
 * **Concurrency Control** – Pessimistic locking (`pessimistic_write`) prevents double-booking of seats during peak traffic.
 * **Atomic Transactions** – Multi-entity operations (Show/Seat validation + Reservation creation) wrapped in database transactions to guarantee data integrity.
@@ -24,7 +24,7 @@ Besides basic CRUD this project solves critical distributed system challenges, s
 * **Encapsulated Modules** – Strict separation of `Public Client` vs `Admin` contexts, sharing a unified service layer for business logic.
 * **Data Sanitization** – Global interceptors and class-transformers secure sensitive fields like emails and internal IDs.
 
-### Project Structure
+#### Project Structure
 
 ```text
 src/
@@ -41,9 +41,16 @@ src/
 └── test/               # Integration tests (concurrency & auth)
 ```
 
-## Getting Started
+#### System Architecture
+![image](./assets/er_diagram.svg)
 
-### 1. Installation & Environment
+1. **Concurrency**: The Reservation table acts as a junction to handle seat-locking, preventing double-bookings.
+2. **Encapsulation**: Foreign keys (marked with -) are excluded from public API responses to maintain a clean data contract.
+3. **Scalability**: Physical layouts (Screen/Seat) are decoupled from scheduling (Show), allowing for flexible management.
+
+### Getting Started
+
+#### 1. Installation & Environment
 First, install the dependencies and set up your environment files.
 
 ```bash
@@ -62,7 +69,7 @@ Create two files in the root directory: .env and .env.test. Use the credentials 
 - DB_PORT=5433
 - DB_DATABASE=movie_app_test
 
-### 2. Database Infrastructure
+#### 2. Database Infrastructure
 This project uses Docker to manage PostgreSQL instances. This ensures your development data stays safe while tests 
 wipe the test database.
 
@@ -71,7 +78,7 @@ wipe the test database.
 $ docker-compose up -d
 ```
 
-### 3. Running the Project 
+#### 3. Running the Project 
 
 ```bash
 # 1. Run migrations to setup the schema
@@ -84,7 +91,7 @@ $ npm run seed
 $ npm run start:dev
 ```
 
-## Testing
+### Testing
 We use Jest for E2E testing. The test suite is configured to automatically use the `.env.test` environment to target 
 the isolated test container.
 ```bash
@@ -95,6 +102,6 @@ $ npm run test:e2e
 **Note**: The E2E tests include a beforeEach hook that truncates all tables to ensure a clean state for every test case. 
 Do not run tests against your production or primary development database!
 
-## License
+### License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
